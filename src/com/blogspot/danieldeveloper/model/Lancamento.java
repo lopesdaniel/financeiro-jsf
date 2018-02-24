@@ -19,6 +19,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.blogspot.danieldeveloper.validation.DecimalPositivo;
+
 @Entity
 @Table(name = "lancamento")
 public class Lancamento implements Serializable {
@@ -62,8 +64,7 @@ public class Lancamento implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	@NotNull
-	@DecimalMin("0")
+	@DecimalPositivo
 	@Column(precision=10, scale=2, nullable=false)
 	public BigDecimal getValor() {
 		return valor;
