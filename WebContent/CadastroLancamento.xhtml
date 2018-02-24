@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/Layout.xhtml">
+	
+	<!-- Utilizado para resgatar a lista de pessoas do BD na fase de invocação da aplicação -->
+	<f:metadata>
+		<f:viewAction action="#{cadastroLancamentosBean.prepararCadastro()}" />
+	</f:metadata>
+
+	<ui:define name="titulo">
+	    Cadastro de Lançamento
+	</ui:define>
+	<ui:define name="corpo">
+		<h:form id="frm">
+			<h:messages showDetail="false" showSummary="true" />
+
+			<h:panelGrid columns="2">
+			
+				<h:outputLabel value="Tipo" />
+				<h:selectOneRadio value="#{cadastroLancamentosBean.lancamento.tipo}"
+					label="Tipo de Lançamento">
+					<f:selectItems value="#{cadastroLancamentosBean.tipoLancamentos}"
+						var="tipoLancamento" itemValue="#{tipoLancamento}" />
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="Pessoa"/>
+				<h:selectOneMenu
+					value="#{cadastroLancamentosBean.lancamento.pessoa}" label="Pessoa">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{cadastroLancamentosBean.todasPessoas}"
+						var="pessoa" itemValue="#{pessoa}" itemLabel="#{pessoa.nome}" />
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Valor" />
+				<h:inputText size="12"
+					value="#{cadastroLancamentosBean.lancamento.valor}" label="valor">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2"
+						minFractionDigits="2" />
+				</h:inputText>
+				
+				<h:outputLabel value="Data de Vencimento" />
+				<h:inputText size="12" value="#{cadastroLancamentosBean.lancamento.dataVencimento}" label="Data de Vencimento">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:inputText>
+				<h:outputLabel value="Data de Pagamento" />
+				<h:inputText size="12" value="#{cadastroLancamentosBean.lancamento.dataPagamento}" label="Data de Pagamento">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:inputText>
+				
+				<h:outputLabel />
+				<h:commandButton value="Salvar" action="#{cadastroLancamentosBean.salvar}" />
+				
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

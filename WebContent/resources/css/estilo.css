@@ -32,5 +32,14 @@ h1 {
 	font-weight: 500;
 	padding: 0px;
 	margin: 0px;
-	margin-bottom: 10px
+	margin-bottom: 10px;
+	margin-left: 10px
+}
+
+.lblMenu{
+	font-size: xx-large;
+	font-weight: 500;
+	font-stretch: expanded;
+	font-style: oblique;
+	font-family: fantasy;
 }

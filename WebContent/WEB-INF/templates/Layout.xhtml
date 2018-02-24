@@ -7,16 +7,18 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title><ui:insert name="titulo">Sistema Financeiro</ui:insert>
+	<title><ui:insert name="titulo">JSFinanças</ui:insert>
 	</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
-	<header> <h:graphicImage library="img" name="money1.png" />
+	<header> <h:graphicImage library="img" name="money1.png" /> <span />
+		<h:outputLabel value="JSFinanças" styleClass="lblMenu"/>
 	</header>
+	<h1><ui:insert name="titulo"/></h1>
 	<div id="conteudo">
 		<ui:insert name="corpo" />
 	</div>
-	<footer> Sistema Financeiro - danieldesenvolvedor.blogspot.com </footer>
+	<footer> JSFinanças - danieldesenvolvedor.blogspot.com </footer>
 </h:body>
 </html>

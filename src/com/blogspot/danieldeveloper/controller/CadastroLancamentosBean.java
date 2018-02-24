@@ -79,7 +79,7 @@ public class CadastroLancamentosBean implements Serializable {
 	}
 	
 
-	public TipoLancamento[] geTipoLancamentos() {
+	public TipoLancamento[] getTipoLancamentos() {
 		return TipoLancamento.values();
 	}
 	
