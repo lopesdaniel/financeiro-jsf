@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.blogspot.danieldeveloper.model.Lancamento;
 import com.blogspot.danieldeveloper.repository.Lancamentos;
+import com.blogspot.danieldeveloper.util.Transactional;
 
 public class CadastroLancamentos implements Serializable{
 
@@ -15,6 +16,7 @@ public class CadastroLancamentos implements Serializable{
 	@Inject
 	private Lancamentos lancamentos;
 	
+	@Transactional
 	public void salvar(Lancamento lancamento) throws NegocioException{
 		if(lancamento.getDataPagamento() != null && lancamento.getDataPagamento().after(new Date())) {
 			throw new NegocioException("Data de pagamento não pode ser uma data futura !");

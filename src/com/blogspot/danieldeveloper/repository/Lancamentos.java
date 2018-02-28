@@ -28,10 +28,7 @@ public class Lancamentos implements Serializable{
 	}
 	
 	public void adicionar(Lancamento lancamento) {
-		EntityTransaction trx = this.manager.getTransaction();
-		trx.begin();
 		this.manager.persist(lancamento);
-		trx.commit();
 	}
 	
 }
