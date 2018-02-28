@@ -7,6 +7,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -20,46 +22,36 @@ import com.blogspot.danieldeveloper.service.NegocioException;
 import com.blogspot.danieldeveloper.util.JPAUtil;
 
 
-@ManagedBean
+@Named
 @ViewScoped
 public class CadastroLancamentosBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
+	private CadastroLancamentos cadastro;
+	
+	@Inject
+	private Pessoas pessoas;
+	
 	private Lancamento lancamento = new Lancamento();
 	private List<Pessoa> todasPessoas;
 	
 	public void prepararCadastro() {
-		EntityManager manager = new JPAUtil().getEntityManager();
-		try {
-			Pessoas pessoas = new Pessoas(manager);
-			this.todasPessoas = pessoas.todas();
-		} finally {
-			manager.close();
-		}
+		this.todasPessoas = this.pessoas.todas();
 	}
 	
 	public void salvar() {
-		EntityManager manager = JPAUtil.getEntityManager();
-		EntityTransaction trx = manager.getTransaction();
 		FacesContext context = FacesContext.getCurrentInstance();
-		try {
-			trx.begin();
-			CadastroLancamentos cadastro = new CadastroLancamentos(new Lancamentos(manager));
-			cadastro.salvar(this.lancamento);
+		try {			
+			this.cadastro.salvar(this.lancamento);
 			
 			this.lancamento = new Lancamento();
 			context.addMessage(null, new FacesMessage("Lançamento salvo com sucesso !"));
-			
-			trx.commit();
-		}catch (NegocioException ex) {
-			trx.rollback();
-			
+		}catch (NegocioException ex) {			
 			FacesMessage message = new FacesMessage(ex.getMessage());
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, message);	
-		}finally {
-			manager.close();
 		}
 	}
 
@@ -75,7 +67,7 @@ public class CadastroLancamentosBean implements Serializable {
 	
 
 	public List<Pessoa> getTodasPessoas() {
-		return todasPessoas;
+		return this.todasPessoas;
 	}
 	
 
