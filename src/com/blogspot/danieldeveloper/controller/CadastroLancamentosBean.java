@@ -6,7 +6,9 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -52,6 +54,12 @@ public class CadastroLancamentosBean implements Serializable {
 			FacesMessage message = new FacesMessage(ex.getMessage());
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, message);	
+		}
+	}
+	
+	public void dataVencimentoAlterada(AjaxBehaviorEvent event) {
+		if(this.lancamento.getDataPagamento() == null) {
+			this.lancamento.setDataPagamento(this.lancamento.getDataVencimento());
 		}
 	}
 
