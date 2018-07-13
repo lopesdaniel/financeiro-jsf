@@ -5,11 +5,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import com.blogspot.danieldeveloper.model.Pessoa;
 import com.blogspot.danieldeveloper.repository.Pessoas;
-import com.blogspot.danieldeveloper.util.JPAUtil;
 
 @FacesConverter(forClass = Pessoa.class)
 public class PessoaConverter implements Converter {
@@ -22,13 +20,21 @@ public class PessoaConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Pessoa retorno = null;
+//		Pessoa retorno = null;
+//		
+//		if (value != null && !"".equals(value)) {
+//			retorno = this.pessoas.porId(new Long(value));
+//		}
+//
+//		return retorno;
 		
-		if(value != null) {
-			retorno = this.pessoas.porId(new Long(value));
-		}
+if(value == null || value.trim().isEmpty()) return null;
 		
-		return retorno;
+		Pessoa pessoa = new Pessoa();
+		pessoa.setId(Long.valueOf(value));
+
+		return pessoa;
+		
 	}
 
 	@Override
@@ -36,7 +42,6 @@ public class PessoaConverter implements Converter {
 		if (value != null) {
 			return ((Pessoa) value).getId().toString();
 		}
-
 		return null;
 	}
 

@@ -17,16 +17,11 @@ public class EntityManagerProducer {
 		this.factory = Persistence.createEntityManagerFactory("FinanceiroPU");
 	}
 
-	//Método produtor...
-	@Produces
-	@RequestScoped
+	@Produces @RequestScoped
 	public EntityManager createEntitiyManager() {
 		return factory.createEntityManager();
 	}
 	
-//	Método de evacuação...
-//	Este método será chamado automaticamente
-//	quando o contexto onde o objeto produzido estiver for encerrado
 	public void closeEntityManager(@Disposes EntityManager manager) {
 		manager.close();
 	}

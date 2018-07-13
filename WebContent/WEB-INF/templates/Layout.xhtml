@@ -8,18 +8,40 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><ui:insert name="titulo">JSFinanças</ui:insert>
-	</title>
+	<title><ui:insert name="titulo">JSFinanças</ui:insert></title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
 	<header> <h:graphicImage library="img" name="money1.png" /> <span />
-		<h:outputLabel value="JSFinanças" styleClass="lblMenu"/>
-	</header>
-	<h1><ui:insert name="titulo"/></h1>
+	<h:outputLabel value="JSFinanças" styleClass="lblMenu" /> </header>
+	
+	<h:form>
+		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
+			<p:submenu label="Cadastros">
+				<p:menuitem value="Pessoa" />
+				<p:menuitem value="Lançamento"
+					action="/CadastroLancamento?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Consultas">
+				<p:menuitem value="Pessoas" />
+				<p:menuitem value="Lançamentos"
+					action="/ConsultaLancamentos?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Sistema">
+				<p:menuitem value="Sair" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+	
+	<h1>
+		<ui:insert name="titulo" />
+	</h1>
 	<div id="conteudo">
 		<ui:insert name="corpo" />
 	</div>
+
+	
+
 	<footer> JSFinanças - danieldesenvolvedor.blogspot.com </footer>
 </h:body>
 </html>
