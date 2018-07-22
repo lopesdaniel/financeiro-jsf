@@ -5,14 +5,16 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
 <ui:composition template="/WEB-INF/templates/Layout.xhtml">
 
 	<!-- Utilizado para resgatar a lista de pessoas do BD na fase de invocação da aplicação -->
 	<f:metadata>
+		<o:viewParam name="id" value="#{cadastroLancamentosBean.lancamento}" />
 		<f:viewAction
-			action="#{cadastroLancamentosBean.getPrepararCadastro()}" />
+			action="#{cadastroLancamentosBean.prepararCadastro()}" />
 	</f:metadata>
 
 

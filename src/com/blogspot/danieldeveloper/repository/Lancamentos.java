@@ -19,6 +19,10 @@ public class Lancamentos implements Serializable {
 	public Lancamentos(EntityManager manager) {
 		this.manager = manager;
 	}
+	
+	public Lancamento porId(Long id) {
+		return manager.find(Lancamento.class, id);
+	}
 
 	public List<String> descricoesQueContem(String descricao) {
 		TypedQuery<String> query = manager.createQuery("select distinct descricao from Lancamento " + "where upper(descricao) like upper(:descricao)",
@@ -36,5 +40,13 @@ public class Lancamentos implements Serializable {
 	public void adicionar(Lancamento lancamento) {
 		this.manager.persist(lancamento);
 	}
-
+	
+	public Lancamento guardar(Lancamento lancamento) {
+		return this.manager.merge(lancamento);
+	}
+	
+	public void remover(Lancamento lancamento) {
+		this.manager.remove(lancamento);
+	}
+	
 }

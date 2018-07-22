@@ -12,6 +12,16 @@
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
+
+	<p:ajaxStatus styleClass="ajax-status">
+		<f:facet name="start">
+			<h:graphicImage library="img" name="loading.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+	
 	<header> <h:graphicImage library="img" name="money1.png" /> <span />
 	<h:outputLabel value="JSFinanças" styleClass="lblMenu" /> </header>
 	

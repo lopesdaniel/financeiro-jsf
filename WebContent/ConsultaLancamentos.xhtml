@@ -39,6 +39,11 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
 					</h:outputText>
 				</p:column>
+				<p:column>
+					<p:button icon="ui-icon-pencil" title="Editar">
+						<f:param name="id" value="#{lancamento.id}" />
+					</p:button>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

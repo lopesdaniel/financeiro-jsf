@@ -34,13 +34,25 @@ public class CadastroLancamentosBean implements Serializable {
 	@Inject
 	private Pessoas pessoas;
 
-	private Lancamento lancamento = new Lancamento();
-	private List<Pessoa> todasPessoas = new ArrayList<>();
+	private Lancamento lancamento;
+	private List<Pessoa> todasPessoas;
 
-	public void getPrepararCadastro() {
-		this.setTodasPessoas(this.pessoas.todas());
-		for (Pessoa p : this.pessoas.todas()) {
-			System.out.println(p.getNome());
+//	public void prepararCadastro() {
+//		this.setTodasPessoas(this.pessoas.todas());
+//		for (Pessoa p : this.pessoas.todas()) {
+//			System.out.println(p.getNome());
+//		}
+//		if(this.lancamento == null) {
+//			this.lancamento = new Lancamento();
+//		}
+//		
+//	}
+	
+	public void prepararCadastro() {
+		this.todasPessoas = this.pessoas.todas();
+		
+		if (this.lancamento == null) {
+			this.lancamento = new Lancamento();
 		}
 	}
 
@@ -84,8 +96,8 @@ public class CadastroLancamentosBean implements Serializable {
 		return TipoLancamento.values();
 	}
 
-	public void setTodasPessoas(List<Pessoa> todasPessoas) {
-		this.todasPessoas = todasPessoas;
-	}
+//	public void setTodasPessoas(List<Pessoa> todasPessoas) {
+//		this.todasPessoas = todasPessoas;
+//	}
 
 }
