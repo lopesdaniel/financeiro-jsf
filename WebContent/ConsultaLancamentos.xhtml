@@ -13,6 +13,7 @@
 	<ui:define name="corpo">
 		<h1>Consulta de lançamentos</h1>
 		<h:form id="frm">
+			<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
 			<p:dataTable value="#{consultaLancamentosBean.lancamentos}"
 				var="lancamento" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5" paginatorPosition="bottom">
 				<p:column headerText="Pessoa" sortBy="#{lancamento.pessoa.nome}">
@@ -43,6 +44,11 @@
 					<p:button icon="ui-icon-pencil" title="Editar">
 						<f:param name="id" value="#{lancamento.id}" />
 					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" process="@this"
+						update="@form" action="#{consultaLancamentosBean.excluir}">
+						<f:setPropertyActionListener value="#{lancamento}"
+						target="#{consultaLancamentosBean.lancamentoSelecionado}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>
